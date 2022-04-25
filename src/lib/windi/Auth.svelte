@@ -20,10 +20,14 @@
     {/key}
   </div>
 {:else if $user}
-  <Popup>
-    <button slot="trigger" class="btn btn-blue">User</button>
-    <User {...$$restProps} />
-  </Popup>
+  {#if $$slots.auth}
+    <slot name="auth" />
+  {:else}
+    <Popup>
+      <button slot="trigger" class="btn btn-blue">User</button>
+      <User {...$$restProps} />
+    </Popup>
+  {/if}
 {:else}
   <Popup>
     <button slot="trigger" class="btn btn-red">Signin</button>

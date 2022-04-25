@@ -2,7 +2,7 @@ import supabase from './supabase';
 
 // { type: 'supabase' table: 'bb_classics', keys: 'titel,info,tags,screen,fileurl,thumb,id' }
 
-export const fetchClass = async (filter) => {
+export const fetch_bb_classics = async (filter) => {
 	let filterSets = filter;
 	let query = supabase.from('bb_classics').select('*');
 	if (filterSets) {
@@ -18,4 +18,4 @@ export const fetchClass = async (filter) => {
 	}
 };
 
-export default fetchClass;
+export default fetch_bb_classics;

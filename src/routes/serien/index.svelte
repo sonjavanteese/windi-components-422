@@ -1,18 +1,19 @@
 <script>
-  import { fetch_bb_classics, pageData } from "$lib/data";
-  import ClassicFetcher from "$lib/data/comp/ClassicFetcher.svelte";
   import Page from "$lib/windi/Page.svelte";
   import PopModal from "$lib/windi/PopModal.svelte";
+  import { fetch_south_park, _south_park, pageData } from "$lib/data";
+  import SpFetcher from "$lib/data/comp/SpFetcher.svelte";
   const pid = 1;
   let { titel, sub } = pageData[pid];
   let open = false;
   let dataDetail = "";
   const getData = (id) => {
-    fetch_bb_classics(id).then((data) => {
+    fetch_south_park(id).then((data) => {
       dataDetail = data;
       open = true;
     });
   };
+ 
 </script>
 
 <PopModal bind:open>
@@ -22,19 +23,24 @@
 </PopModal>
 
 <Page>
-  <section class="container mx-auto px-2 py-4">
-    <header>
-      <hgroup>
-        <h2>{titel}</h2>
-        <h4>{sub}</h4>
-        <p class="py-2">
-          <a href="/" class="btn shadow">Start</a>
-        </p>
-      </hgroup>
-    </header>
-
+  <header class="px-4 py-4 text-center">
+    <hgroup class="space-y-4 py-4">
+      <h2>{titel}</h2>
+      <h4>{sub}</h4>
+      <p class="space-x-2">
+        <a
+          href="/serien"
+          on:click|preventDefault={() => _south_park.fetchAll()}
+          class="btn shadow">Reload</a
+        >
+        <a href="/serien/editor" class="btn shadow">Edit List</a>
+      </p>
+    </hgroup>
+  </header>
+  <hr />
+  <section class="container mx-auto px-2">
     <div class="py-4">
-      <ClassicFetcher let:payload>
+      <SpFetcher refresh={false} let:payload>
         <ul class="list-none divide-y">
           {#each payload as data}
             <li
@@ -51,10 +57,10 @@
               </span>
             </li>
           {:else}
-            <li>Press The Reload Button</li>
+            <li class="text-center">Press The Reload Button</li>
           {/each}
         </ul>
-      </ClassicFetcher>
+      </SpFetcher>
     </div>
   </section>
 </Page>

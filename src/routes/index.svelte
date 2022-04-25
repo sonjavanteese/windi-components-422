@@ -1,35 +1,42 @@
 <script>
-  import { user, fetchClass } from "$lib/data";
+  import { user, pageData, navData } from "$lib/data";
   import Auth from "$lib/windi/Auth.svelte";
-  import ClassicFetcher from "$lib/data/comp/ClassicFetcher.svelte";
-
-  const getData = (id) => {
-    fetchClass(id).then((data) => {
-      console.log("getData", data);
-    });
-  };
+  import Page from "$lib/windi/Page.svelte";
+  const pid = 0;
+  let { titel, sub } = pageData[pid];
 </script>
 
-<section class="container mx-auto px-2 py-4">
-  <header>
-    <hgroup>
-      <h2>Startseite</h2>
+<Page>
+  <header class="py-12 px-4 text-center">
+    <hgroup class="py-4 space-y-4">
+      <h2>{titel}</h2>
       <h4>
         {#if $user}
-          Signed In
+          {sub}
         {:else}
           Signed Out
         {/if}
       </h4>
-      <p class="py-2">
-        <a href="/studio" class="btn shadow">Studio</a>
-      </p>
     </hgroup>
   </header>
-
-  <div class="py-4">
-    <Auth popup class="shadow bg-white rounded-lg w-full">
-      
-    </Auth>
-  </div>
-</section>
+  <hr />
+  <section class="container mx-auto px-2">
+    <div class="py-4">
+      <Auth popup class="shadow bg-white rounded-lg w-full">
+        <div slot="auth" class="py-8">
+          <ul>
+            {#each navData as { path, name, icon, sub }, i}
+              {#if i != 0}
+                <li>
+                  <a href={path}>{name}</a>
+                </li>
+              {/if}
+            {:else}
+              <li>... loading</li>
+            {/each}
+          </ul>
+        </div>
+      </Auth>
+    </div>
+  </section>
+</Page>

@@ -6,27 +6,29 @@
   };
 </script>
 
-<aside class="fixed inset-y-0 left-0 w-64 z-30" class:open>
-  <header class="p-2">
+<aside class="fixed inset-y-0 left-0 w-64 z-30 overflow-hidden" class:open>
+  <div class="flex flex-col h-full justify-between overflow-x-hidden overflow-y-auto">
     <slot>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo quis enim
-      itaque voluptatum suscipit voluptatem deserunt explicabo officia excepturi
-      eaque ipsa quidem vel exercitationem doloribus, laudantium doloremque
-      fugiat consectetur maiores.
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo quis enim
+        itaque voluptatum suscipit voluptatem deserunt explicabo officia
+        excepturi eaque ipsa quidem vel exercitationem doloribus, laudantium
+        doloremque fugiat consectetur maiores.
+      </p>
     </slot>
-    <p>
-      <button on:click={toggle} class="btn btn-blue">Toggel</button>
-    </p>
-  </header>
+    <footer class="p-4 text-right">
+      <button on:click={toggle} class="btn shadow hover:btn-red">Close</button>
+    </footer>
+  </div>
 </aside>
 
 <BackDrop bind:open />
 
-<div class="fixed top-0 right-0 z-20 backdrop backdrop-blur">
-  <button on:click={() => (open = true)} class="p-4"
+<header class="fixed top-1 right-1 z-20 bg-white bg-opacity-25 rounded-full">
+  <button on:click={() => (open = true)} class="p-3"
     ><i class="gg-menu-grid-o" /></button
   >
-</div>
+</header>
 
 <style>
   aside {

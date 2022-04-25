@@ -1,6 +1,6 @@
 <script>
     import {fade} from 'svelte/transition';
-    const op_dura = 300;
+    const op_dura = 400;
     const op_out = {duration: op_dura};
 </script>
 
@@ -27,7 +27,7 @@
     div {
         width: 100%;
         max-width: var(--pw, 100%);
-        padding: 0 1rem;
+        padding: 0;
         margin: 0 auto;
     }
 </style>
