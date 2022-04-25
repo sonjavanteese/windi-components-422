@@ -1,5 +1,5 @@
 {
-  "name": "kit-apr1",
+  "name": "windi-components",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
@@ -27,5 +27,18 @@
   "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^1.34.1"
-  }
+  },
+  "description": "Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).",
+  "main": "mdsvex.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonjavanteese/windi-components-422.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonjavanteese/windi-components-422/issues"
+  },
+  "homepage": "https://github.com/sonjavanteese/windi-components-422#readme"
 }

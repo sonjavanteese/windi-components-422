@@ -10,6 +10,6 @@
     <slot>Hello</slot>
   </Content>
   <Trigger>
-    <slot name="trigger">{label}</slot>
+    <slot name="trigger">Open</slot>
   </Trigger>
 </Modal>
