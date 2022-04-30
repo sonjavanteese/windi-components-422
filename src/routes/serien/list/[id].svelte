@@ -13,7 +13,7 @@
 	let { head } = appData[3];
 	$: heading = daten.titel ? daten.titel : 'Details';
 	const getData = () => {
-		fetch_south_park($page.params.id)
+		fetch_south_park({id: $page.params.id})
 			.then((data) => {
 				daten = data;
 			})

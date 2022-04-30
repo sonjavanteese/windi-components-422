@@ -9,7 +9,7 @@
   let promise;
   let loading;
   const getData = () => {
-    fetch_south_park($page.params.id).then((data) => {
+    fetch_south_park({id: $page.params.id}).then((data) => {
       daten = data;
       return data;
     });
