@@ -12,7 +12,17 @@ export const appData = [
       "name": "Start",
       "icon": "home",
       "sub": false
-    }
+    },
+    "navi": [
+      {
+        "path": "/serien",
+        "name": "Serien"
+      },
+      {
+        "path": "/studio",
+        "name": "Studio"
+      }
+    ]
   },
   {
     "id": 1,
@@ -27,7 +37,21 @@ export const appData = [
       "name": "Serien",
       "icon": "database",
       "sub": false
-    }
+    },
+    "navi": [
+      {
+        "path": "/serien",
+        "name": "Serien"
+      },
+      {
+        "path": "/serien/list",
+        "name": "Episoden"
+      },
+      {
+        "path": "/serien/editor",
+        "name": "Editor"
+      }
+    ]
   },
   {
     "id": 2,
@@ -42,7 +66,38 @@ export const appData = [
       "name": "Studio",
       "icon": "database",
       "sub": false
-    }
+    },
+    "navi": []
+  },
+  {
+    "id": 3,
+    "slug": "serien",
+    "head": {
+      "titel": "South Park Collection",
+      "sub": "Episoden Liste"
+    },
+    "link": {
+      "path": "/serien/list",
+      "name": "Episoden Liste",
+      "icon": "database",
+      "sub": true
+    },
+    "navi": []
+  },
+  {
+    "id": 4,
+    "slug": "serien",
+    "head": {
+      "titel": "South Park Collection",
+      "sub": "Episoden Editor"
+    },
+    "link": {
+      "path": "/serien/editor",
+      "name": "Episoden Editor",
+      "icon": "database",
+      "sub": true
+    },
+    "navi": []
   }
 ];  
 export const navData = appData.map((x) => x.head);

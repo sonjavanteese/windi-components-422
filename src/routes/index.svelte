@@ -26,7 +26,7 @@
         <div slot="auth" class="py-8">
           <ul>
             {#each navData as { path, name, icon, sub }, i}
-              {#if i != 0}
+              {#if i != 0 && !sub}
                 <li>
                   <a href={path}>{name}</a>
                 </li>

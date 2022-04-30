@@ -24,14 +24,16 @@
 <Sidebar bind:open>
   <div class="w-full h-full">
     <ul>
-      {#each navData as { path, name, icon }}
-        <li on:click={() => (open = false)}>
-          <a
-            href={path}
-            class="nav-link"
-            class:active={$page.url.pathname === path}>{name}</a
-          >
-        </li>
+      {#each navData as { path, name, icon, sub }}
+        {#if !sub}
+          <li on:click={() => (open = false)}>
+            <a
+              href={path}
+              class="nav-link"
+              class:active={$page.url.pathname === path}>{name}</a
+            >
+          </li>
+        {/if}
       {/each}
     </ul>
   </div>

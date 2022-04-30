@@ -1,6 +1,6 @@
 <script>
   import { fly, slide } from "svelte/transition";
-  import { copyToClipboard } from "$lib/utils/clipboard";
+  import { copyToClipboard } from "../utils/clipboard";
   export let title = "";
   export let content = "";
   let code = JSON.stringify(content, null, 2);
@@ -56,7 +56,7 @@
 </section>
 
 <style>
-  @import "../../../assets/copy.css";
-  @import "../../../assets/code.css";
+  @import "../../assets/copy.css";
+  @import "../../assets/code.css";
   /* @import "../../../assets/enter.css"; */
 </style>

@@ -1,11 +1,10 @@
 <script>
+	import { addToast } from '$lib/toast';
   import Page from "$lib/windi/Page.svelte";
   import Loader from "$lib/windi/Loader.svelte";
-  import { Modal, Content, Trigger } from "sv-popup";
-  import EditBar from "./_EditBar.svelte";
-  import { fetch_south_park, _south_park, supabase } from "$lib/data";
+
+  import { fetch_south_park, _south_park, supabase, sleep } from "$lib/data";
   import { page } from "$app/stores";
-  let open = false;
   let daten = {};
   let promise;
   let loading;
@@ -32,7 +31,9 @@
     } catch (err) {
       console.log(err);
     } finally {
+      await sleep(500);
       reload();  
+      addToast('Data Updated', 'Action', 'success')
       loading = false;
     }
   };
@@ -163,23 +164,6 @@
         </div>
 
         <footer class="flex py-2 space-x-2">
-          <Modal small={true}>
-            <Content>
-              <div class="mr-2 mt-2 w-full">
-                <EditBar
-                  class=" bg-white rounded-lg"
-                  title={daten.titel}
-                  content={daten}
-                />
-              </div>
-            </Content>
-            <Trigger>
-              <button
-                class="flex w-10 h-10 items-center justify-center shadow rounded"
-                ><i class="gg-attachment" /></button
-              >
-            </Trigger>
-          </Modal>
           <button
             on:click={update}
             class="flex w-10 h-10 items-center justify-center shadow rounded"

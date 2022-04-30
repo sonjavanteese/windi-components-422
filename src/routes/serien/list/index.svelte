@@ -1,25 +1,30 @@
 <script>
-  import Page from "$lib/windi/Page.svelte";
   import PageHeader from "$lib/windi/PageHeader.svelte";
+  import Page from "$lib/windi/Page.svelte";
   import PopModal from "$lib/windi/PopModal.svelte";
   import { page } from "$app/stores";
-  import EditBar from "$lib/windi/EditBar.svelte";
   import { fetch_south_park, _south_park, pageData, appData } from "$lib/data";
   import SpFetcher from "$lib/data/comp/SpFetcher.svelte";
-  const pid = 4;
+  const pid = 3;
   let {
     navi,
     head
   } = appData[pid];
   let { titel, sub } = pageData[pid];
   let open = false;
-
   let dataDetail = "";
   const getData = (id) => {
     fetch_south_park(id).then((data) => {
       dataDetail = data;
       open = true;
     });
+  };
+  const evenOdd = (n) => {
+    if (n % 2 === 0) {
+      return true;
+    } else {
+      return false;
+    }
   };
 </script>
 
@@ -30,7 +35,7 @@
 </PopModal>
 
 <Page>
-  <PageHeader titel={head.titel} sub={head.sub} class="bg-red-700 text-white">
+  <PageHeader titel={head.titel} sub={head.sub} class="bg-blue-700 text-white">
     <a
       href="/serien"
       on:click|preventDefault={() => _south_park.fetchAll()}
@@ -39,22 +44,35 @@
   </PageHeader>
 
   <section class="container mx-auto px-2">
+    <!-- ep,titel,name,st,tags,id,assets -->
     <div class="py-4">
       <SpFetcher refresh={false} let:payload>
         <ul class="list-none divide-y">
           {#each payload as data}
-            <li>
+            <li class={evenOdd(data.st) ? "bg-red-50" : "bg-blue-50"}>
               <a
-                href="/serien/editor/{data.id}"
-                class="flex items-center justify-between py-1 px-2 text-lg cursor-pointer"
+                href="/serien/list/{data.id}"
+                class="flex justify-between py-1 px-2 cursor-pointer border-l-8 border-r-2 {evenOdd(
+                  data.st
+                )
+                  ? 'border-red-400'
+                  : 'border-blue-400'} rounded"
               >
-                <span class="font-semibold">
-                  {data.titel}
+                <span class="flex flex-col">
+                  <span class="text-lg font-semibold">
+                    {data.titel}
+                  </span>
+                  <span class="text-base font-light">{data.name}</span>
+                  <span class="text-sm "
+                    >Season: {data.st <= 9 ? 0 : ""}{data.st} Episode: {data.ep <=
+                    9
+                      ? 0
+                      : ""}{data.ep}</span
+                  >
                 </span>
-                <span class="text-sm font-thin italic">
-                  {data.st <= 9 ? `0${data.st}` : data.st}/ {data.ep <= 9
-                    ? `0${data.ep}`
-                    : data.ep}
+
+                <span class="text-sm italic">
+                  {data.id}
                 </span>
               </a>
             </li>
