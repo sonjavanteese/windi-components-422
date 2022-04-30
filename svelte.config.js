@@ -1,5 +1,5 @@
 import { mdsvex } from 'mdsvex';
-// import adapter from 'svelte-adapter-github';
+//import adapter from 'svelte-adapter-github';
 import preprocess from 'svelte-preprocess';
 import WindiCSS from 'vite-plugin-windicss';
 
@@ -18,10 +18,10 @@ const config = {
 	preprocess: [preprocess(), mdsvex(mdsvexConfig)],
 
 	kit: {
-		// adapter: adapter({
-		// 	fallback: '200.html'
-		// }),
-		adapter: adapter({}),
+		adapter: adapter({
+			fallback: '200.html'
+		}),
+		// adapter: vercel({}),
 
 		prerender: {
 			default: true

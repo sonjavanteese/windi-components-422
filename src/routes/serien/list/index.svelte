@@ -42,7 +42,8 @@
 			<SpFetcher refresh={false} let:payload>
 				<ul class="list-none divide-y">
 					{#each payload as data}
-						<li
+						<li 
+						id="row{data.id}"
 							class={evenOdd(data.st)
 								? 'bg-red-50 text-red-800 rounded-lg'
 								: 'bg-blue-50 text-blue-800 rounded-lg'}
